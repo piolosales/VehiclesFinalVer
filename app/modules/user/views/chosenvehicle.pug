@@ -1,0 +1,23 @@
+extends ../../../templates/master.pug
+
+block content
+    h1.title Chosen Vehicle
+    hr
+    ul
+            each vehicle in vehicles 
+                    li= `${vehicle.id} - ${vehicle.maker} - ${vehicle.model} - ${vehicle.year} - ${vehicle.platenumber} - ${vehicle.state}`
+    br
+    a.button.is-black(href="/index") 
+        span Go back to index
+    br
+    p 
+
+            each vehicle in vehicles
+                 form(method='POST' action=`/users/edit/\`${vehicle.id}\``)
+                    span
+                        button(type='submit' class='button is-dark')
+                            span Edit/Update
+                 form(method='post' action=`/users/delete`)
+                    span
+                        button(name='id' type='submit' value= vehicle.id class='button is-light')
+                            span Delete 

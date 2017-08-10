@@ -1,0 +1,43 @@
+extends ../../../templates/master.pug
+
+block content
+    h2.title Edit a Vehicle
+    each vehicle in vehicles
+      li= `${vehicle.id} - ${vehicle.maker} - ${vehicle.model} - ${vehicle.year} - ${vehicle.platenumber} - ${vehicle.state}`
+        form(method = "POST" action ="/users/edited ")
+            .field
+                .label ID
+                .control    
+                    input.input(type="text" name ="id"  value = vehicle.id readonly)
+            .field
+                .label Maker
+                .control
+                    input.input(type="text" placeholder="Maker" name="maker" value =vehicle.maker)
+            .field
+                .label Model
+                .control    
+                    input.input(type="text" placeholder="Model" name="model" value =vehicle.model)
+            .field 
+                .label Year
+                .control   
+                    input.input(type="year" placeholder="Year" name="year" value =vehicle.year)
+            .field
+                .label Plate Number
+                .control
+                    input.input(type="text" placeholder="Plate Number" name="platenumber" value =vehicle.platenumber)
+            .field
+                .label State
+                .control    
+                <div class = "select">
+                    select(type = "select" name ="state")
+                        <option value= "Brand New" readonly> Brand New </option>
+                        <option value = "Pre-Owned" readonly> Pre-Owned </option>
+                    </select>
+                </div>
+                //-  input.input(type="text" placeholder="State" name= "state")
+            input(type="submit" value="Submit") 
+            br
+            p 
+            a.button.is-submit(href="/index") 
+            span Cancel
+            br
